@@ -1,5 +1,10 @@
 from django.db import models
 
+class Promotion(models.Model):
+  description = models.TextField()
+  discount = models.FloatField()
+  # products
+
 class Collection(models.Model):
   title = models.CharField(max_length=255)
 
@@ -11,6 +16,7 @@ class Product(models.Model):
   inventory = models.IntegerField()
   collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
   updated_at = models.DateTimeField(auto_now=True)
+  promotions = models.ManyToManyField(Promotion, related_name='products')
 
 class Customer(models.Model):
   BRONZE = 'B'
