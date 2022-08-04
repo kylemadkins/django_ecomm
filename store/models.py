@@ -13,11 +13,12 @@ class Product(models.Model):
   sku = models.CharField(max_length=255, primary_key=True)
   title = models.CharField(max_length=255)
   description = models.TextField()
-  price = models.DecimalField(max_digits=6, decimal_places=2)
+  unit_price = models.DecimalField(max_digits=6, decimal_places=2)
   inventory = models.IntegerField()
   collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
   updated_at = models.DateTimeField(auto_now=True)
   promotions = models.ManyToManyField(Promotion, related_name='products')
+  slug = models.SlugField()
 
 class Customer(models.Model):
   BRONZE = 'B'
